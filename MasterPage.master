@@ -1,0 +1,194 @@
+﻿<%@ Master Language="C#" CodeFile="MasterPage.master.cs" Inherits="MasterPage"%>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+<%@ Register src="Modules/UC/ucProfileLink.ascx" tagname="ucProfileLink" tagprefix="uc1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title></title>   
+    <link href="App_Themes/CSSstyleTheme/MasterPageCSS/CssAddon.css" rel="stylesheet" type="text/css"/>
+    <link href="App_Themes/CSSstyleTheme/MasterPageCSS/Site.css" rel="stylesheet" type="text/css"/>    
+
+    <script src="Scripts/js/jquery.min.js"></script>
+   <%-- <script src="Scripts/js/bootstrap.min.js"></script>
+    <script src="Scripts/js/bootstrap.js"></script>--%>
+    <script src="Scripts/js/npm.js"></script>
+    <script src="Scripts/WaterMark.js"></script>
+    <script src="Scripts/DOMAlert.js"></script>
+    <script>
+        $(document).ready(function () {
+            ShowTime();
+        });
+
+        function ShowTime() {
+            var dt = new Date();
+            $("#lblTime").html(dt.toLocaleTimeString());
+            window.setTimeout("ShowTime()", 1000);
+        }
+
+        //function get_hide() {
+        //    document.getElementById('dinhd').style.visibility = 'hidden';
+        //    document.getElementById('divbody').style.visibility = 'visible';
+
+        //}
+        //function get_show() {
+        //    document.getElementById('dinhd').style.visibility = 'visible';
+        //    document.getElementById('divbody').style.visibility = 'hidden';
+        //}
+
+
+
+        function KeepSession() {
+            // A request to server
+            $.post("http://27.147.194.132/hris/KeepSessionAlive.ashx");
+            // alert("hi");
+            //now schedule this process to happen in some time interval, in this example its 1 min
+            setInterval(KeepSession, 300000);
+        }
+
+        // First time call of function
+        KeepSession();
+
+
+    </script>
+
+   
+
+</head>
+<body class="mpage DivHeight" onload="ShowTime();" style="background-color:white">
+    <form id="form1" runat="server" style="background-color:white">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="false">
+        </asp:ScriptManager>
+    <div id="dinhd" style="padding:0px;margin:0px;">      
+        <table style="width:100%">
+            <tr>
+                <td style="background-color:white">
+                    <asp:Panel ID="Panel1" runat="server" CssClass="panel-default">
+                        <table style="width: 100%">
+                            <tr>
+                                <td style="width: 10px; height: 20px;"></td>
+                                <td rowspan="4" style="width: 120px">
+                                    &nbsp;</td>
+                                <td style="width: 400px; height: 20px"></td>
+                                <td style="width: 393px; height: 20px"></td>
+                                <td style="width: 20px; width: 9px;"></td>
+                                <td style="width: 20px"></td>
+                                <td style="width: 130px">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 11px; height: 20px;"></td>
+                                <td style="width: 400px; height: 20px;">
+                                    <asp:Label ID="lblCompanyName" runat="server" Font-Bold="True" ForeColor="#666666" Font-Names="Tahoma" Font-Size="12PT"></asp:Label>
+                                </td>
+                                <td style="text-align: right; height: 20px; width: 393px; font-family:Tahoma">
+                                        <asp:LinkButton ID="lnkUserName" runat="server" ForeColor="#0066FF" Font-Size="12px"></asp:LinkButton>
+                                </td>
+                                <td style="text-align:center; height: 20px; width:9px; font-size:12px;font-family:Tahoma">
+                                    &nbsp;</td>
+                                <td style="text-align:right">
+                                    <uc1:ucProfileLink ID="ucProfileLink1" runat="server" />
+                                </td>
+                               <td style="width: 130px">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 11px">&nbsp;</td>
+                                <td style="width: 400px">
+                                    <asp:Label ID="lblCompanyAddress" runat="server" ForeColor="#8D8D8D" Font-Size="12px" Font-Names="Tahoma"></asp:Label>
+                                </td>
+                                <td style="width: 393px">
+                                    &nbsp;</td>
+                                <td style="width: 9px">&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td style="width: 130px">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 11px">&nbsp;</td>
+                                <td style="width: 400px">
+                                    <asp:Label ID="lblCompanyContact" runat="server" Font-Names="Tahoma" Font-Size="12px" ForeColor="#8D8D8D"></asp:Label>
+                                </td>
+                                <td style="width: 393px;text-align:right">
+                                    &nbsp;</td>
+                                <td style="width: 9px">&nbsp;</td>
+                                <td style="text-align:right">                                    
+                                    <asp:Label ID="lblDateTime" runat="server" Font-Names="Tahoma" Font-Size="12px" ForeColor="#8D8D8D"></asp:Label>
+                                    &nbsp;
+                                    <asp:Label ID="lblTime" runat="server" Font-Names="Tahoma" Font-Size="12px" ForeColor="#0066FF"></asp:Label>
+                                  
+                                </td>
+                                <td style="width: 130px">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div style="height:2px"></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </asp:Panel>
+                </td>
+            </tr>            
+            <tr>
+                <td style="padding:0px;margin:0px;background-color:#611088">                                    
+                        <table style="width:100%;">
+                            <tr style="background-color:#611088">
+                                <td style="background-color:#611088;width:130px">&nbsp;</td>
+                                <td style="width: 1081px">
+                                        <div class="clear hideSkiplink">
+                                            <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                                                <Items>
+                                                    <%--<asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home">
+                                                        <asp:MenuItem NavigateUrl="~/Modules/SystemAdmin/frmAccount.aspx" Text="aaaaa" 
+                                                            Value="aaaaa"></asp:MenuItem>
+                                                        <asp:MenuItem NavigateUrl="~/Modules/SystemAdmin/frmCertification.aspx" Text="Certification" Value="aaaaa"></asp:MenuItem>
+                                                        <asp:MenuItem NavigateUrl="~/Modules/SystemAdmin/frmBusinessType.aspx" Text="Business" Value="aaaaa"></asp:MenuItem>
+                                                        <asp:MenuItem NavigateUrl="~/Modules/SystemAdmin/frmDepartment.aspx" Text="Department" Value="aaaaa"></asp:MenuItem>
+                                                        <asp:MenuItem NavigateUrl="~/Modules/SystemAdmin/frmCompanySetup.aspx" Text="Company" Value="aaaaa"></asp:MenuItem>
+                                                         <asp:MenuItem NavigateUrl="~/Modules/SystemAdmin/frmOwnership.aspx" Text="Ownership" 
+                                                            Value="tttt"></asp:MenuItem>
+                                                    </asp:MenuItem>
+                                                    <asp:MenuItem NavigateUrl="~/Modules/SystemAdmin/frmRole.aspx" Text="About"/>
+                                                    <asp:MenuItem NavigateUrl="~/Modules/SystemAdmin/frmLocation.aspx" Text="Location"/>--%>
+                                                </Items>
+                                            </asp:Menu>
+                                        </div>
+                                </td>
+                                <td style="background-color:#611088">&nbsp;</td>
+                            </tr>                         
+                           
+                            </table>
+                   
+                </td>
+            </tr>                     
+        </table>
+    </div>
+    <div id="divbody" style="padding:0px;margin:0px;">
+        
+        <table style="background-color:white">
+          
+            <tr>
+                <td style="width: 125px">&nbsp;</td>
+                <td style="width: 1081px">
+                    &nbsp;</td>
+                <td style="width: 125px">&nbsp;</td>
+            </tr>
+          
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                <asp:Panel ID="Panel3" runat="server">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+                </asp:Panel>
+                </td>
+                <td style="width: 125px">&nbsp;</td>
+            </tr>
+        </table>
+        <div style="height:50px"></div>
+       
+   </div>
+
+    </form>
+</body>
+</html>
